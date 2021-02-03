@@ -1,13 +1,34 @@
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
+import { parseRequestUrl } from './utils';
+import Page404Screen from './screens/Page404Screen';
+//create routes utk locate adressing dan panggil Screen modulenya
+const routes = {
+  '/': homeScreen,
+  '/product:id': ProductScreen,
+};
+
+const router = () => {
+  const request = parseRequestUrl();
+  const parseUrl =
+    (request.resource ? `/${request.resource}` : '/') +
+    (request.id ? ':/id' : '') +
+    (request.verb ? `request.verb` : '');
+  //panggil routesbuat pilihan screen adress ke '/' atau '/product:id' atau page404error jkta tak ada
+  const screen = routes[parseUrl] ? routes[parseUrl] : Page404Screen;
+  const main = document.querySelector('#main-container');
+  main.innerHTML = secreen.render(); //nilai main skarang berisi html yg dinamis dari Homescreen.render()
+};
+window.addEventListener('load', router);
+window.addEventListener('hashchange', router);
+
+/*KETERANGAN NOTE/CATATAN:
+import HomeScreen from './screens/HomeScreen.js';
+import ProductScreen from './screens/ProductScreen.js';
 //jlnkan router saat loading masukan render atau tampilkan tag html li dinamys
 //kpada main.inerHTml yg mana utk tampilkan card card
 
 //object routes brisi key broser dan component yg di action/dikenai beban
-const routes = {
-  '/': HomeScreen,
-  '/product/:id': ProductScreen,
-};
 
 const router = () => {
   const main = document.querySelector('#main-container');
@@ -22,3 +43,23 @@ window.addEventListener('load', router); // adaEvent listener adalah
 //dimaa render adalah mrupakan object metode katalain atau key dari sbuah object
 //yanga mmana value dari onject adalah mrupakan <li> </li> yg dinamkik krn dimasukan dari variable data tadi
 //${nilai variable }
+
+
+//sekrang kita akan mlkukan hal yg sama dgn product id 
+akan tetapi kit aharus route ambil hast dari route itu dan 
+
+
+
+*/
+
+/*
+Catatan resource method utk ambil/identify resource web site
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web
+
+
+*/
+
+/*
+https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onhashchange
+
+*/

@@ -44,6 +44,7 @@ Design website
 )
 5.uild Url Router
 1.Create routes as router:screen object for home screen
+   ( jadi ke screet product kalau gak bisa 404 error)
 2.create util.js
 3.export parseRequestURL()
 4.exporturl as hash addresssplit by slsah

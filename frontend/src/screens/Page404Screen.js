@@ -1,9 +1,9 @@
-const ProductScreen = {
+const Page404Screen = {
   render: () => {
-    return `<div>ProductScreen</div>`;
+    return `<div>Error 404 Page Not Found</div>`;
   },
 };
-export default ProductScreen;
+export default Page404Screen;
 
 /*
 ingat  NameObject ={ render: ()=>{}}

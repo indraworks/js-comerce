@@ -1,5 +1,6 @@
 import data from '../data.js';
 
+//home screen sbgai object di export
 const HomeScreen = {
   render: () => {
     const { products } = data;

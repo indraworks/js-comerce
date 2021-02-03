@@ -1,15 +1,16 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "JS AMAZONA bab 1 1.Create Folder Strcutur 1.craeate toot folder as jsecomerce 2.ass frontend and backend folder 3.create src folder in frontend 4.create index.html with heading jsamazona in src 5.run npm init in frontend folder 6.npm install liveserver (-D\\_) 7.add start command pkgjson as live-sever src--verbose 8.run npm start",
   "main": "index.js",
-  "scripts": {
-    "start":"live-server src --verbose"
-  },
-  "keywords": [],"test": "echo \"Error: no test specified\" && exit 1",
-  "author": "indra",
-  "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
     "live-server": "^1.2.1"
-  }
+  },
+  "scripts": {
+    "start":"live-server src --verbose",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "indra",
+  "license": "MIT"
 }
