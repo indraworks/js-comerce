@@ -1,0 +1,25 @@
+{
+  "name": "js-ecomerce",
+  "version": "1.0.0",
+  "description": "backend server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indraworks/js-comerce.git"
+  },
+  "author": "indras",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indraworks/js-comerce/issues"
+  },
+  "homepage": "https://github.com/indraworks/js-comerce#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

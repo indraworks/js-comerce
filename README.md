@@ -44,7 +44,9 @@ Design website
 )
 5.uild Url Router
 1.Create routes as router:screen object for home screen
-   ( jadi ke screet product kalau gak bisa 404 error)
+( jadi ke screet product kalau gak bisa 404 error)
+note: edit hmtlnya utk di bagian ul yg benar adalah #/ bukan
+/#/ biart tidak error karena tangkap hash stlahnya /dirnya!
 2.create util.js
 3.export parseRequestURL()
 4.exporturl as hash addresssplit by slsah
@@ -54,3 +56,14 @@ Design website
 8.build procedure url and compare with routes
 9.if route exist render it else render error 404
 10.create screen error404.js and render error message
+
+6.Create NodeJs Server
+run npm init in root jsamazona folder
+npm install express
+create server.js
+add start commad as node backend/server.js
+require express
+movedata.js from frontedn to backend
+create route for /api/rpdocuts
+retrun prodiuct in data.js
+run npm start
