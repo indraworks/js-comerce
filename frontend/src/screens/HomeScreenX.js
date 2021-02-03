@@ -5,17 +5,17 @@ const HomeScreen = {
   render: () => {
     const { products } = data;
     return `
-                <ul class='products'> 
-                   ${products
-                     .map(
-                       (product) => `
-                    <li>
+     <ul class="products">
+      ${products
+        .map(
+          (product) => `
+               <li>
                    <div class="product">
-                        <a href="#/product/${product._id}">
-                       <img src=${product.image} alt="${product.name}">
+                        <a href="/#/product/${product._id}">
+                       <img src="/images/product-1.jpg" alt="${product.name}">
                     </a>
                     <div class="product-name">
-                       <a href="#/${product._id}">
+                       <a href="/#/${product._id}">
                           ${product.name}
                         </a>
                     </div>
@@ -29,13 +29,10 @@ const HomeScreen = {
                   </div>
                </li>
       
-                     
-                   `
-                     )
-                     .join('\n')}
-
-                 </ul>
-                  `;
+      `
+        )
+        .join('\n')}
+    </ul>`;
   },
 };
 
@@ -112,5 +109,14 @@ const HomeScreen = {
                         </div>
             </li>
           
+
+*/
+
+/*
+CATATAN PENTING!
+<!-- CATATAN utk parseUrl ngambil hash itu depannya # pada ul index.html atau pada HomeScreen ! ini yang benar #/  bukan /#/ nanti error gak dapat ambil porductSreen
+sebab uda 2x ngambil!
+
+
 
 */

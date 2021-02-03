@@ -1,24 +1,27 @@
 import HomeScreen from './screens/HomeScreen.js';
+import { parseRequestUrl } from './utils.js';
+import Page404Screen from './screens/Page404Screen.js';
 import ProductScreen from './screens/ProductScreen.js';
-import { parseRequestUrl } from './utils';
-import Page404Screen from './screens/Page404Screen';
-//create routes utk locate adressing dan panggil Screen modulenya
+
 const routes = {
-  '/': homeScreen,
-  '/product:id': ProductScreen,
+  '/': HomeScreen,
+  '/product/:id': ProductScreen,
 };
 
 const router = () => {
   const request = parseRequestUrl();
   const parseUrl =
     (request.resource ? `/${request.resource}` : '/') +
-    (request.id ? ':/id' : '') +
-    (request.verb ? `request.verb` : '');
-  //panggil routesbuat pilihan screen adress ke '/' atau '/product:id' atau page404error jkta tak ada
+    (request.id ? '/:id' : '') +
+    (request.verb ? `/${request.verb}` : '');
+  console.log(request.resource);
+  //compare
   const screen = routes[parseUrl] ? routes[parseUrl] : Page404Screen;
+
   const main = document.querySelector('#main-container');
-  main.innerHTML = secreen.render(); //nilai main skarang berisi html yg dinamis dari Homescreen.render()
+  main.innerHTML = screen.render();
 };
+
 window.addEventListener('load', router);
 window.addEventListener('hashchange', router);
 
@@ -61,5 +64,34 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_res
 
 /*
 https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onhashchange
+
+*/
+
+/*
+// import HomeScreen from './screens/HomeScreen.js';
+// import ProductScreen from './screens/ProductScreen.js';
+// import { parseRequestUrl } from './utils';
+// import Page404Screen from './screens/Page404Screen';
+// //create routes utk locate adressing dan panggil Screen modulenya
+// // const routes = {
+// //   '/': homeScreen,
+// //   // '/product:id': ProductScreen,
+// // };
+
+// const router = () => {
+//   const request = parseRequestUrl();
+//   const parseUrl =
+//     (request.resource ? `/${request.resource}` : '/') +
+//     (request.id ? ':/id' : '') +
+//     (request.verb ? `request.verb` : '');
+//   //panggil routesbuat pilihan screen adress ke '/' atau '/product:id' atau page404error jkta tak ada
+//   // const screen = routes[parseUrl] ? routes[parseUrl] : Page404Screen;
+//   const screen = routes;
+//   const main = document.getElementById('main-container');
+//   main.innerHTML = HomeScreen.render(); //nilai main skarang berisi html yg dinamis dari Homescreen.render()
+// };
+// window.addEventListener('load', router);
+// window.addEventListener('hashchange', router);
+
 
 */
