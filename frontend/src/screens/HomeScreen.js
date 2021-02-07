@@ -1,20 +1,30 @@
 // import data from '../data.js';
-
+import axios from 'axios';
 //home screen sbgai object di export
 const HomeScreen = {
   render: async () => {
+    ///////////////// fetch digangi axios /////////////////
     // const { products } = data;
     //ambil data langsung dari server hrus asyc await
-    const response = await fetch('http://localhost:5500/api/products', {
+    // const response = await fetch('http://localhost:5500/api/products', {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
+    /////////////////////end  fecth ////////////////////////////////
+
+    const response = await axios({
+      url: 'http://localhost:5500/api/products',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    if (response.status !== 200) {
+
+    if (!response || response.statusText !== 'OK') {
       return `<div><h1> Errors in getting data!</h1></div>`;
     }
-    //if success
-    const products = await response.json(); //sudah mrupkan promisedimsukan ke varibale
+    // const products = await response.json();
+    const products = response.data;
 
     return `
                 <ul class='products'> 

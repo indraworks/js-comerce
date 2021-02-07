@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "JS AMAZONA bab 1 1.Create Folder Strcutur 1.craeate toot folder as jsecomerce 2.ass frontend and backend folder 3.create src folder in frontend 4.create index.html with heading jsamazona in src 5.run npm init in frontend folder 6.npm install liveserver (-D\\_) 7.add start command pkgjson as live-sever src--verbose 8.run npm start",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
   "devDependencies": {
     "webpack": "^5.21.1",
     "webpack-cli": "^4.5.0",

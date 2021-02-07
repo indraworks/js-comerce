@@ -90,3 +90,13 @@ run npm start
     9.npm start
     10.npm install axios
     11.change fetch to axios in homeScreen
+
+    9.Install babel for ES6 Syntax (backedn)
+    1.npm install \_D babel core,cli,node ,preset-env
+    2.Create .babelrc and set presets @babel/preset-env
+    3npm install -D nodemon
+    4.set start:nodemon --watch backend --exec babel-node backend/
+    server.js
+    5.covert require to import in server.js
+    6.npm statrt
+npm install -D @babel/core @babel/cli @babel/node @babel/preset-env

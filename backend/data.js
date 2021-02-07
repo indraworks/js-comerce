@@ -1,4 +1,5 @@
-module.exports = {
+// module.exports = { ini es 5 gatni es6
+export default {
   //dinodejs ganti dari export default mjdi module.exports
   products: [
     {

@@ -15,7 +15,7 @@ const router = async () => {
     (request.resource ? `/${request.resource}` : '/') +
     (request.id ? '/:id' : '') +
     (request.verb ? `/${request.verb}` : '');
-  console.log(request.resource);
+  console.log(parseUrl);
   //compare
   const screen = routes[parseUrl] ? routes[parseUrl] : Page404Screen;
 
