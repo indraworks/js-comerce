@@ -5,10 +5,12 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "live-server": "^1.2.1"
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "start":"live-server src --verbose",
+    "start": "webpack serve --mode development --watch-content-base --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "indra",

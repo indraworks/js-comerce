@@ -77,13 +77,16 @@ run npm start
 
 7.  8.Add Webpack
     1.cd frontend
-    2.npm install -D webpack webpack-cli webpack-dev-server
+    2.npm install -D webpack webpack-cli webpack-dev-server //satu2 installnya
+    npm i -D webpack
+    npm i -D webpack-cli
+    npm i -D webpack-dev-server
     3.npm uninstall live-server
     4."start":"webpack-dev-server --mode development --watch-content-base --open"
     5.move index.html,style.css and images to frontend folder
     6.rename app.js to index.js
     7.update index.html
-    add <script src="main.js"></script> before </body>
-    npm start
-    npm install axios
-    change fetch to axios in homeScreen
+    8.add <script src="main.js"></script> before </body>
+    9.npm start
+    10.npm install axios
+    11.change fetch to axios in homeScreen
