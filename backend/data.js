@@ -1,4 +1,5 @@
-export default {
+module.exports = {
+  //dinodejs ganti dari export default mjdi module.exports
   products: [
     {
       _id: '1',

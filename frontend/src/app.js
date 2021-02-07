@@ -7,8 +7,9 @@ const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
 };
-
-const router = () => {
+//kalau dapat data dari server  maka hrs disesuikan router dan render
+//harus async dan await mnyesuaikan
+const router = async () => {
   const request = parseRequestUrl();
   const parseUrl =
     (request.resource ? `/${request.resource}` : '/') +
@@ -19,7 +20,7 @@ const router = () => {
   const screen = routes[parseUrl] ? routes[parseUrl] : Page404Screen;
 
   const main = document.querySelector('#main-container');
-  main.innerHTML = screen.render();
+  main.innerHTML = await screen.render();
 };
 
 window.addEventListener('load', router);

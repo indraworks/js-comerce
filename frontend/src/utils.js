@@ -17,7 +17,7 @@ location.hash.split("/")[1]
 "product"
 location.hash.split("/")[2]
 "4jktjktr6775332rr77"
- nanti yg diambil adalah array 1,2 dan yg terakhir utk 3 adalah action 
+ nanti yg diambil adalah array 1,2 dan yg terakhir utk 3 adalah verb
  requestverb apakah get/post/put/delete
 utk yg ketiga acationnya itu merupakan GET 
 nah parameter verbnya utk query dimulai dgn tanda ?

@@ -1,9 +1,21 @@
-import data from '../data.js';
+// import data from '../data.js';
 
 //home screen sbgai object di export
 const HomeScreen = {
-  render: () => {
-    const { products } = data;
+  render: async () => {
+    // const { products } = data;
+    //ambil data langsung dari server hrus asyc await
+    const response = await fetch('http://localhost:5500/api/products', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status !== 200) {
+      return `<div><h1> Errors in getting data!</h1></div>`;
+    }
+    //if success
+    const products = await response.json(); //sudah mrupkan promisedimsukan ke varibale
+
     return `
                 <ul class='products'> 
                    ${products
@@ -40,6 +52,20 @@ const HomeScreen = {
 };
 
 export default HomeScreen;
+
+/*
+UTK CHECK DATA DAN FLOW DARI BACKEDN 
+
+cara lihat di console PILIH netowkr check/click  " XHR"  
+disitu lihat yg dimabil sblah kiri  bawah  data aldah products 
+check pada menu tabulator sblaha kanan  haeders  -->utk lihat status kita
+                                       preivew--utk liaht isi data kita ok apa ngagk
+                                       timing dll liat dewe
+
+
+
+*/
+
 /*
 HomeScreen adlaah object yg berisi 
 object callback function brenama render

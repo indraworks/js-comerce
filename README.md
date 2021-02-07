@@ -67,3 +67,23 @@ movedata.js from frontedn to backend
 create route for /api/rpdocuts
 retrun prodiuct in data.js
 run npm start
+7.Loada Products From backend
+1.a running both backend server and fornt end
+1.Edit HomeScree.js
+2.make render async server.js
+3.fetch products from 'api/products' in render (async -await)
+4.make router() async and call await HomeScreen.render()
+5.use cors on backend ( with install cors pkg)
+
+7.  8.Add Webpack
+    1.cd frontend
+    2.npm install -D webpack webpack-cli webpack-dev-server
+    3.npm uninstall live-server
+    4."start":"webpack-dev-server --mode development --watch-content-base --open"
+    5.move index.html,style.css and images to frontend folder
+    6.rename app.js to index.js
+    7.update index.html
+    add <script src="main.js"></script> before </body>
+    npm start
+    npm install axios
+    change fetch to axios in homeScreen
