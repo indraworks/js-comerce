@@ -109,6 +109,14 @@ a:hover {
   font-weight: bold;
 }
 
+.rating span {
+  color: #ffb901;
+  font-size: 1.8rem;
+}
+.rating span:last-child {
+  color: #444444;
+  font-size: 1.4rem;
+}
 /*
 flex:0 1 
 https://css-tricks.com/almanac/properties/f/flex-grow/
