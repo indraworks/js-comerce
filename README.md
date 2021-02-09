@@ -117,6 +117,14 @@ run npm start
 12.redicrect user to cart/:product_id
 
 
+14.
+
+15.
+
+16.
+
+
+
 
 
 

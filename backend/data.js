@@ -11,7 +11,7 @@ export default {
       brand: 'Hiskywin',
       rating: 2.5,
       numReviews: 10,
-      countInStock: 6,
+      countInStock: 0,
     },
     {
       _id: '2',
@@ -59,7 +59,7 @@ export default {
     },
     {
       _id: '6',
-      name: 'Full Kontol Shirts',
+      name: 'Full jelek Shirts',
       category: 'Pants',
       image: '/images/product-6.jpg',
       price: 60,

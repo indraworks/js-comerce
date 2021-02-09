@@ -100,6 +100,28 @@ a {
 a:hover {
   color: rgb(255, 119, 0);
 }
+
+button {
+  font: 1.6rem helvetica;
+  padding: 1rem;
+  border: 0.1rem #808080;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+button:hover {
+  border: 0.1rem #404040 solid;
+  background: #f08040;
+}
+
+.fw {
+  width: 100%;
+}
+.success {
+  color: rgb(14, 177, 14);
+}
+.error {
+  color: rgb(226, 25, 25);
+}
 .product-brand {
   font-size: 1.2rem;
   color: #808080;
@@ -117,10 +139,76 @@ a:hover {
   color: #444444;
   font-size: 1.4rem;
 }
+
+.content {
+  padding: 1rem;
+}
+/* product detail */
+.details {
+  display: flex;
+  justify-content: space-between; /* buat slaing jauh ssam item */
+  align-items: flex-start; /*sting colum view  */
+  flex-wrap: wrap; /* supata klo kcil jadi 1 colum  */
+}
+
+/*image kita ambil jadi 4 bagian   */
+.details-image {
+  flex: 2 1 60rem;
+}
+
+.details-image img {
+  max-width: 60rem;
+  width: 100%;
+}
+.details-info,
+.details-action {
+  flex: 1 1 30rem;
+}
+.details-info ul,
+.details-action ul {
+  padding: 0;
+  list-style-type: none;
+}
+/*  end product detail*/
+
+.details-info h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+/* li nya kita kasih jarak  */
+.details-info li,
+.details-action li {
+  margin-bottom: 1rem;
+}
+/* details action kit abuat kotak border */
+.details-action {
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  background: #f8f8f8;
+  padding: 1rem;
+}
+
 /*
 flex:0 1 
 https://css-tricks.com/almanac/properties/f/flex-grow/
 
+
+
+*/
+
+/*
+tentang flex:
+CSS Syntax
+flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+Property Values
+Value	Description
+flex-grow	A number specifying how much the item will grow relative to the rest of the flexible items
+flex-shrink	A number specifying how much the item will shrink relative to the rest of the flexible items
+flex-basis	The length of the item. Legal values: "auto", "inherit", or a number followed by "%", "px", "em" or any other length unit
+auto	Same as 1 1 auto.
+initial	Same as 0 1 auto. Read about initial
+none	Same as 0 0 auto.
+inherit	Inherits this property from its parent element. Read about inherit
 
 
 */

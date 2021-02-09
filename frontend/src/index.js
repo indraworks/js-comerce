@@ -21,6 +21,8 @@ const router = async () => {
 
   const main = document.querySelector('#main-container');
   main.innerHTML = await screen.render();
+  //manggil afeter render disini jika diklick
+  await screen.afterRender();
 };
 
 window.addEventListener('load', router);
