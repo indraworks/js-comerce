@@ -2,10 +2,14 @@ import HomeScreen from './screens/HomeScreen.js';
 import { parseRequestUrl } from './utils.js';
 import Page404Screen from './screens/Page404Screen.js';
 import ProductScreen from './screens/ProductScreen.js';
+import CartScreen from './screens/CartScreen.js';
 
 const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
+  '/cart/:id': CartScreen, //mnuju cart per id
+  '/cart':CartScreen //
+  
 };
 //kalau dapat data dari server  maka hrs disesuikan router dan render
 //harus async dan await mnyesuaikan
