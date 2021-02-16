@@ -106,13 +106,19 @@ button {
   padding: 1rem;
   border: 0.1rem #808080;
   border-radius: 0.5rem;
+  background: #d0d0d0;
   cursor: pointer;
 }
 button:hover {
   border: 0.1rem #404040 solid;
   background: #f08040;
 }
-
+.primary {
+  background: #ffb901;
+}
+h3 {
+  text-align: center;
+}
 .fw {
   width: 100%;
 }
@@ -188,6 +194,70 @@ button:hover {
   padding: 1rem;
 }
 
+/*Cart */
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.cart-list {
+  flex: 3 1 60rem;
+}
+.cart-action {
+  flex: 1 1 20rem;
+  background: #d0d0d0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+/* margin-top: 3rem;
+} */
+
+.cart-list-container {
+  padding: 1rem;
+  list-style-type: none;
+}
+.container2 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 10rem;
+}
+.cart-list-container li {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.cart-list-container img {
+  max-width: 10rem;
+  max-height: 10rem;
+}
+/* header paling atas li child no.1 price kita set tingginya  */
+.cart-list-container li:first-child {
+  align-items: flex-end;
+}
+
+.cart-name {
+  margin-left: 100rem;
+}
+.cart-image {
+  flex: 1 1;
+}
+.cart-price {
+  flex: 1 1;
+  text-align: right;
+}
+.cart-name > div {
+  padding: 1rem;
+}
+.cart-list h3 {
+  margin: 0;
+}
+.cart-list button,
+.cart-list select {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
 /*
 flex:0 1 
 https://css-tricks.com/almanac/properties/f/flex-grow/

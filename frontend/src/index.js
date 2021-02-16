@@ -8,8 +8,7 @@ const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
   '/cart/:id': CartScreen, //mnuju cart per id
-  '/cart':CartScreen //
-  
+  '/cart': CartScreen, //
 };
 //kalau dapat data dari server  maka hrs disesuikan router dan render
 //harus async dan await mnyesuaikan
@@ -26,7 +25,7 @@ const router = async () => {
   const main = document.querySelector('#main-container');
   main.innerHTML = await screen.render();
   //manggil afeter render disini jika diklick
-  await screen.afterRender();
+  if (screen.after_render) await screen.after_render();
 };
 
 window.addEventListener('load', router);
