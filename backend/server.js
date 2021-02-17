@@ -6,6 +6,9 @@
 import express from 'express';
 import cors from 'cors';
 import data from './data.js';
+import mongoose from 'mongoose';
+import config from './config'; //kita import supaya bisa baca isi .env
+
 const app = express();
 
 const port = 5500;
@@ -27,6 +30,21 @@ app.get('/api/products/:id', (req, res) => {
     });
   }
 });
+
+//conect mongoose
+mongoose
+  .connect(config.MONGODB_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to mongodb');
+  })
+  .catch((err) => {
+    console.log(err.reason);
+  });
 
 app.listen(port, () => console.log(`we runing on server ${port}`));
 

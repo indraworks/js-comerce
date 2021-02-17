@@ -46,6 +46,27 @@ const addToCart = (item, forceUpdate = false) => {
     rerender(CartScreen);
   }
 };
+//remve cart
+const removeFromCart = (id) => {
+  //ngeset yg bukan id yg didelete dimasukan kestorage
+  setCartItems(getCartItems().filter((x) => x.product !== id));
+  if (id === parseRequestUrl().id) {
+    //jik adisa sama id  dan id  yg ada di browser redirect ke page cart langsung
+    //artinya dia blum habi sdidelete
+    document.location.hash = '/cart';
+    console.log('indra');
+    console.log('id =', id);
+    console.log('parseUrl =', parseRequestUrl(id));
+  } else {
+    //ini jika dia gak sama alias dia baru saja di click didelete id dibandingkan dgn id broser ygbaru
+    console.log('mirna');
+    console.log('id =', id);
+    console.log('parseUrl =', parseRequestUrl(id));
+    rerender(CartScreen);
+    //update tampilan
+    //artiya render 2x yaitu CartScree,remder(0) & CarSreen.after_render()
+  }
+};
 
 const CartScreen = {
   after_render: () => {
@@ -58,6 +79,21 @@ const CartScreen = {
         //spread smua item dilocal storage tambahkan dgn yg baru
         addToCart({ ...item, qty: Number(e.target.value) }, true);
       });
+    });
+
+    //utk delete sama button djdikan array,trigerya waktu diclick
+    const btnDeletes = document.getElementsByClassName('delete-button');
+    Array.from(btnDeletes).forEach((btnDelete) => {
+      btnDelete.addEventListener('click', () => {
+        removeFromCart(btnDelete.id);
+      });
+    });
+    //add process checkout
+    document.getElementById('checkout-button').addEventListener('click', () => {
+      //document locatioh.hash adalah numjuk pada browsser stlah /# --> yatu /Sign-in
+      //jdi diborser cchrm kita diarahkan redirect ke adress /#/Sign-In
+      //pada console =http://localhost:8080/#/Sign-In
+      document.location.hash = '/Sign-In';
     });
   },
   render: async () => {
@@ -73,7 +109,7 @@ const CartScreen = {
         image: product.image,
         price: product.price,
         countInStock: product.countInStock,
-        qty: 1,
+        qty: 1, //defaultnya 1 dulu nnti akan diubah oleh user lwat click tombol select
       });
     }
     // return `<div>Cart Screen </div>
@@ -150,6 +186,50 @@ const CartScreen = {
   },
 };
 export default CartScreen;
+
+/*
+PENJELASAAN JIKA SAYA klik button di product id di card utk saya kmduian kan muncul product/:id 
+spcific no,nah ada button add to cart nah disitu akan broser ke cart misal product id  yg saya klick =6 
+maka saya menuju paga cart nah itu trus brambtah /cart/6 
+jika sama mnuju product screem dan clikc product id  3 misalkan nah saya mnuju hal specific produt/3
+nah ktika saya kklik add to cart maka broser akan jadi cart/3 
+
+nah skrg id button syaa kan smbarang itu pas misalkan saya delete button yg 3 jika sama 
+maka akan menuju kecart halaman skrgn 
+kalau tidak maka saya render smua halaman utk update 
+
+
+
+
+
+ if (id === parseRequestUrl().id) {
+     ini atinya idcart = product yg paling bawah  yg ada di browser
+     dan id yg saya delete ini adalah sama dgn idcart yg baru masuk susunan paling 
+     bawah   
+     maka gak perlu di update screen tetap di cart
+     yg didelete yg diurut paling bawah 
+
+
+    document.location.hash = '/cart';
+    console.log('indra');
+    console.log('id =', id);
+    console.log('parseUrl =', parseRequestUrl(id));
+  } else {
+     yg didelete bukan yg diurut paling bawah ,tidak sama dgn broser yg skarang mis broser skrng cart/6 
+     yg kit adelete yg ditengah id =4 maka kita akan mlakukan update screem 
+
+
+    console.log('mirna');
+    console.log('id =', id);
+    console.log('parseUrl =', parseRequestUrl(id));
+    rerender(CartScreen);
+    //update tampilan
+    //artiya render 2x yaitu CartScree,remder(0) & CarSreen.after_render()
+  }
+
+
+
+*/
 
 /*Keterangan ktika user klik select pilihan di select box
 maka qty tsb harus dimasukan/pasing ke function addToCart

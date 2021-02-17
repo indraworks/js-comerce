@@ -422,3 +422,6 @@ Lessons
         vii. Update index.js to render aside 9.
         viii. call getCategories
         ix. create getCategories in api.js
+
+note disini install mongoose@5.11.15 sbab ada bug jadi downgrae aja 
+biar tidak ada warning
