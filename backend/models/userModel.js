@@ -35,5 +35,4 @@ diatas bisa diliaha userModel = mongoose.model('Nama_Colection',nama_Schema)
 
 
 
-
 */

@@ -8,11 +8,15 @@ import cors from 'cors';
 import data from './data.js';
 import mongoose from 'mongoose';
 import config from './config'; //kita import supaya bisa baca isi .env
+import userRouter from './routes/userRouter.js';
+import bodyParser from 'body-parser';
 
 const app = express();
 
 const port = 5500;
 app.use(cors());
+app.use(bodyParser.json());
+
 app.get('/api/products', (req, res) => {
   res.send(data.products);
 });
@@ -31,6 +35,12 @@ app.get('/api/products/:id', (req, res) => {
   }
 });
 
+//kalau kit alangsung handel pakai app.get/post/put/delete tapi kalau kita taruh dilink
+//dan didlm sbuah file dlm hal ini di dir sndir dan file pnenganan end point di taruh didirectori
+//maka kit agunakan app.use(nama_endPointya,nama_function_handle endpoint tsb)
+
+app.use('/api/users', userRouter);
+
 //conect mongoose
 mongoose
   .connect(config.MONGODB_URL, {
@@ -45,6 +55,14 @@ mongoose
   .catch((err) => {
     console.log(err.reason);
   });
+//chek utk eror validation yg nanganin ini dirouter adah expressAsyncHandler
+app.use((err, req, res, next) => {
+  const status = err.name && err.name === 'ValidationError' ? 400 : 500;
+  //maksud diatas smua dicheck errornya jika validtonError kita kasih status=400,slain itu server error
+  res.status(status).send({
+    message: err.message,
+  });
+});
 
 app.listen(port, () => console.log(`we runing on server ${port}`));
 

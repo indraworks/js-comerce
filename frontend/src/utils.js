@@ -12,8 +12,17 @@ export const parseRequestUrl = () => {
 export const rerender = async (component) => {
   document.getElementById(
     'main-container'
-  ).innerHTML = await component.render()
+  ).innerHTML = await component.render();
   await component.after_render();
+};
+
+//kita buat show loading and hide loading overlay
+
+export const showLoading = () => {
+  document.getElementById('loading-overlay').classList.add('active');
+};
+export const hideLoading = () => {
+  document.getElementById('loading-overlay').classList.remove('active');
 };
 
 /*

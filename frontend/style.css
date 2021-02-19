@@ -102,22 +102,45 @@ a:hover {
 }
 
 button {
+  cursor: pointer;
+}
+/* input disamakan besarnya sama button kluarin cursor */
+input,
+button {
   font: 1.6rem helvetica;
   padding: 1rem;
   border: 0.1rem #808080;
   border-radius: 0.5rem;
   background: #d0d0d0;
-  cursor: pointer;
 }
+/* input sma2 dpt hover */
+input:hover,
 button:hover {
   border: 0.1rem #404040 solid;
-  background: #f08040;
+  background: #f0c040;
 }
 .primary {
-  background: #ffb901;
+  background: #f0c040;
 }
 h3 {
   text-align: center;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; /*paling atas 0*/
+  left: 0; /*dari pling kiri 0*/
+  width: 100%; /*sluruh layar*/
+  background-color: rgba(16, 16, 16, 0.5); /*transparaent*/
+}
+/* jadinnti overlay dibuat active maka dia akan flex..wanr putih */
+.overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 .fw {
   width: 100%;
@@ -138,7 +161,7 @@ h3 {
 }
 
 .rating span {
-  color: #ffb901;
+  color: #f0c040;
   font-size: 1.8rem;
 }
 .rating span:last-child {
@@ -257,6 +280,33 @@ h3 {
 .cart-list select {
   padding: 0.5rem;
   font-size: 1.3rem;
+}
+/* Form  */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form-items {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #d0d0d0;
+  list-style-type: none;
+}
+.form-items li {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.form-container h1 {
+  align-items: center;
+  text-align: center;
 }
 /*
 flex:0 1 
