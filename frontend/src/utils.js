@@ -22,7 +22,38 @@ export const showLoading = () => {
   document.getElementById('loading-overlay').classList.add('active');
 };
 export const hideLoading = () => {
+  function wait(ms) {
+    let start = new Date().getTime();
+    let end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
+
+  wait(1000);
+
   document.getElementById('loading-overlay').classList.remove('active');
+};
+//cb = callback
+export const ShowMessage = (message, cb) => {
+  document.getElementById('message-overlay').innerHTML = `
+      <div>
+      <div id="message-overlay-content" >${message}</div>
+      <button id="message-oberlay-close-button">OK <button>
+      </div>
+      
+      `;
+
+  document.getElementById('message-overlay').classList.add('active');
+  //kita close button waktu button diclick select dulu id buton sbb:
+  document
+    .getElementById('message-overlay-close-button')
+    .addEventListener('click', () => {
+      document.getElementById('message-overlay').classList.remove('active');
+      if (cb) {
+        cb();
+      }
+    });
 };
 
 /*

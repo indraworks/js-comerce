@@ -132,10 +132,13 @@ h3 {
   z-index: 1000;
   top: 0; /*paling atas 0*/
   left: 0; /*dari pling kiri 0*/
-  width: 100%; /*sluruh layar*/
+  width: 100%; /*sluruh  lebar layar*/
+  height: 100%; /*sluruh  tinggi layar*/
   background-color: rgba(16, 16, 16, 0.5); /*transparaent*/
 }
-/* jadinnti overlay dibuat active maka dia akan flex..wanr putih */
+/* jadinnti overlay dibuat active maka dia akan flex..wanr putih 
+ dgn preintah classList.add(active) di utils.js
+*/
 .overlay.active {
   display: flex;
   justify-content: center;

@@ -9,7 +9,7 @@ const Header = {
             <a href="/#/">JS AMAZONA</a>
           </div>
             <div class='header-in'>
-            //pakah name exist?
+            
                ${
                  name
                    ? `<a href="/#/profile">${name}</a>`

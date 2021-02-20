@@ -5,6 +5,9 @@ import { hideLoading, showLoading } from '../utils';
 const SigninScreen = {
   after_render: () => {
     //mbuat aksi brdasarkan submit yg diselect adalah form id="signin-form"
+
+    
+
     document
       .getElementById('signin-form')
       .addEventListener('submit', async (e) => {
@@ -15,14 +18,14 @@ const SigninScreen = {
           email: document.getElementById('email').value,
           password: document.getElementById('password').value,
         });
-
+       
+        hideLoading();
         if (data.error) {
-          hideLoading();
           alert(data.error);
         } else {
           setUserInfo(data);
           //jika success redirect ke halaman utama '/'
-          hideLoading();
+
           document.location.hash = '/';
           console.log(data);
         }
