@@ -5,6 +5,7 @@ import ProductScreen from './screens/ProductScreen.js';
 import CartScreen from './screens/CartScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 import Header from './components/Header.js';
+import RegisterScreen from './screens/RegisterScreen.js';
 
 const routes = {
   '/': HomeScreen,
@@ -12,6 +13,7 @@ const routes = {
   '/cart/:id': CartScreen, //mnuju cart per id
   '/cart': CartScreen, //
   '/signin': SigninScreen,
+  '/register': RegisterScreen,
 };
 //kalau dapat data dari server  maka hrs disesuikan router dan render
 //harus async dan await mnyesuaikan

@@ -44,3 +44,29 @@ export const signin = async ({ email, password }) => {
     return { error: err.response.data.message || err.message };
   }
 };
+//register
+export const register = async ({ name, email, password }) => {
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/users/register`,
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      //stlah header karna ini metode post jgn lupa data yg akan dimasukanke server
+      data: {
+        //aslinya email:email,password:password krn es6 boleh dtulis 1 x krn sama
+        name,
+        email,
+        password,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    console.log(err.message);
+    return { error: err.response.data.message || err.message };
+  }
+};

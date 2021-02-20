@@ -1,18 +1,20 @@
-import { signin } from '../api';
+import { register } from '../api';
 import { setUserInfo, getUserInfo } from '../localStorage';
 import { hideLoading, showLoading, ShowMessage } from '../utils';
 
-const SigninScreen = {
+const RegisterScreen = {
   after_render: () => {
-    //mbuat aksi brdasarkan submit yg diselect adalah form id="signin-form"
+    //mbuat aksi brdasarkan submit yg diselect adalah form id="register-form"
 
     document
-      .getElementById('signin-form')
+      .getElementById('register-form')
       .addEventListener('submit', async (e) => {
         e.preventDefault();
-        //taruh di before signin utk overlay
+        //taruh di before register utk overlay
         showLoading();
-        const data = await signin({
+        //ke api.js buat utk func register
+        const data = await register({
+          name: document.getElementById('name').value,
           email: document.getElementById('email').value,
           password: document.getElementById('password').value,
         });
@@ -38,10 +40,14 @@ const SigninScreen = {
     }
     return `
       <div class='form-container'>
-        <form id='signin-form'>
+        <form id='register-form'>
           <ul class='form-items'>
             <li>
-              <h1>Sign In</h1>
+              <h1>Create Account</h1>
+            </li>
+            <li>
+              <label for='name'><strong>Name</strong></label>
+              <input type='name' name='name' id='name' />
             </li>
             <li>
               <label for='email'><strong>Email</strong></label>
@@ -52,12 +58,16 @@ const SigninScreen = {
               <input type='password' name='password' id='password' />
             </li>
             <li>
-              <button class='fw' type='submit'><strong>SignIn</strong></button>
+              <label for='repassword'><strong>Re-Enter Password</strong></label>
+              <input type='repassword' name='repassword' id='repassword' />
+            </li>
+            <li>
+              <button class='fw' type='submit'><strong>register</strong></button>
             </li>
             <li>
               <div>
                 <small>
-                  New User?<a href='/#/register'><strong>Create Your Account</stromg></a>
+                  Already Have Account?<a href='/#/signin'><strong>Please Sign-in</strong></a>
                 </small>
               </div>
             </li>
@@ -67,4 +77,4 @@ const SigninScreen = {
     `;
   },
 };
-export default SigninScreen;
+export default RegisterScreen;

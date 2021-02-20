@@ -35,11 +35,11 @@ export const hideLoading = () => {
   document.getElementById('loading-overlay').classList.remove('active');
 };
 //cb = callback
-export const ShowMessage = (message, cb) => {
+export const ShowMessage = (message, callback) => {
   document.getElementById('message-overlay').innerHTML = `
       <div>
       <div id="message-overlay-content" >${message}</div>
-      <button id="message-oberlay-close-button">OK <button>
+      <button id="message-overlay-close-button">OK</button>
       </div>
       
       `;
@@ -50,8 +50,8 @@ export const ShowMessage = (message, cb) => {
     .getElementById('message-overlay-close-button')
     .addEventListener('click', () => {
       document.getElementById('message-overlay').classList.remove('active');
-      if (cb) {
-        cb();
+      if (callback) {
+        callback();
       }
     });
 };
