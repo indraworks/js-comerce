@@ -63,6 +63,38 @@ userRouter.post(
   })
 );
 
+userRouter.post('/register', async (req, res) => {
+  //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
+  try {
+    const userRegistered = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+    await userRegistered.save();
+    if (!userRegistered) {
+      res.status(401).send({
+        message: 'Wrong /invalid user data',
+      });
+    } else {
+      //send respond balik ke client dgn data yg sudah diiisni
+      res.send({
+        _id: userRegistered._id,
+        name: userRegistered.name,
+        email: userRegistered.email,
+        token: generateToken(userRegistered),
+      });
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({
+      message: 'server error',
+    });
+  }
+
+  //kita save
+});
+
 //export agar digunakan server.js
 export default userRouter;
 

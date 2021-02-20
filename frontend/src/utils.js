@@ -22,15 +22,15 @@ export const showLoading = () => {
   document.getElementById('loading-overlay').classList.add('active');
 };
 export const hideLoading = () => {
-  function wait(ms) {
-    let start = new Date().getTime();
-    let end = start;
-    while (end < start + ms) {
-      end = new Date().getTime();
-    }
-  }
+  // function wait(ms) {
+  //   let start = new Date().getTime();
+  //   let end = start;
+  //   while (end < start + ms) {
+  //     end = new Date().getTime();
+  //   }
+  // }
 
-  wait(1000);
+  // wait(500);
 
   document.getElementById('loading-overlay').classList.remove('active');
 };

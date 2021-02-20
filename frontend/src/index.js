@@ -1,11 +1,12 @@
 import HomeScreen from './screens/HomeScreen.js';
-import { parseRequestUrl } from './utils.js';
+import { hideLoading, parseRequestUrl, showLoading } from './utils.js';
 import Page404Screen from './screens/Page404Screen.js';
 import ProductScreen from './screens/ProductScreen.js';
 import CartScreen from './screens/CartScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 import Header from './components/Header.js';
 import RegisterScreen from './screens/RegisterScreen.js';
+import ProfileScreen from './screens/profileScreen.js';
 
 const routes = {
   '/': HomeScreen,
@@ -14,10 +15,12 @@ const routes = {
   '/cart': CartScreen, //
   '/signin': SigninScreen,
   '/register': RegisterScreen,
+  '/profile': ProfileScreen,
 };
 //kalau dapat data dari server  maka hrs disesuikan router dan render
 //harus async dan await mnyesuaikan
 const router = async () => {
+  showLoading();
   const request = parseRequestUrl();
   const parseUrl =
     (request.resource ? `/${request.resource}` : '/') +
@@ -33,7 +36,8 @@ const router = async () => {
   //manggil afeter render disini jika diklick
   header.innerHTML = await Header.render();
   //await header.after_render();
-  await screen.after_render();
+  if (screen.after_render) await screen.after_render();
+  hideLoading();
 };
 
 window.addEventListener('load', router);

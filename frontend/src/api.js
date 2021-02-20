@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from './config';
+import { getUserInfo } from './localStorage';
 export const getProduct = async (id) => {
   try {
     const response = await axios({
@@ -70,3 +71,29 @@ export const register = async ({ name, email, password }) => {
     return { error: err.response.data.message || err.message };
   }
 };
+
+//profile ini kita edit ops = PUT kita search idnya dulu 
+//kita ambil dari yg uda dikrim server di storage
+
+export const update =({name,email,password})=> {
+  const {_id,token} = getUserInfo()
+   try {
+     const response = await axios({
+       url:`${apiUrl}/api/users/${_id}`,
+       method:'POST',
+       header:{'Content-Type':'application/json'},
+       //ada authorization krn kita pasang utk pake token jika update
+       authorization:`Bearer ${token}`,
+       data:{ //aslinya name:name...krn es6 sama bisa tulis skli
+         name,email,password
+       }
+     } )
+     if(response.statusText!=='OK') {
+        throw new Error(response.data.message)
+     }
+     return response.data;
+   } catch (err) {
+     console.log(err.message)
+    return {error: err.response.data.message || err.message}
+   }
+}
