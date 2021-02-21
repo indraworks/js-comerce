@@ -48,7 +48,7 @@ const ProfileScreen = {
         <form id='profile-form'>
           <ul class='form-items'>
             <li>
-              <h1>Create Account</h1>
+              <h1>Update Account</h1>
             </li>
             <li>
               <label for='name'><strong>Name</strong></label>

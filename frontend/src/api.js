@@ -26,7 +26,7 @@ export const signin = async ({ email, password }) => {
     const response = await axios({
       url: `${apiUrl}/api/users/signin`,
       method: 'POST',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
       //stlah header karna ini metode post jgn lupa data yg akan dimasukanke server
@@ -51,7 +51,7 @@ export const register = async ({ name, email, password }) => {
     const response = await axios({
       url: `${apiUrl}/api/users/register`,
       method: 'POST',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
       //stlah header karna ini metode post jgn lupa data yg akan dimasukanke server
@@ -72,28 +72,31 @@ export const register = async ({ name, email, password }) => {
   }
 };
 
-//profile ini kita edit ops = PUT kita search idnya dulu 
+//profile ini kita edit ops = PUT kita search idnya dulu
 //kita ambil dari yg uda dikrim server di storage
 
-export const update =({name,email,password})=> {
-  const {_id,token} = getUserInfo()
-   try {
-     const response = await axios({
-       url:`${apiUrl}/api/users/${_id}`,
-       method:'POST',
-       header:{'Content-Type':'application/json'},
-       //ada authorization krn kita pasang utk pake token jika update
-       authorization:`Bearer ${token}`,
-       data:{ //aslinya name:name...krn es6 sama bisa tulis skli
-         name,email,password
-       }
-     } )
-     if(response.statusText!=='OK') {
-        throw new Error(response.data.message)
-     }
-     return response.data;
-   } catch (err) {
-     console.log(err.message)
-    return {error: err.response.data.message || err.message}
-   }
-}
+export const update = async ({ name, email, password }) => {
+  const { _id, token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/users/${_id}`,
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      //ada authorization krn kita pasang utk pake token jika update
+      authorization: `Bearer ${token}`,
+      data: {
+        //aslinya name:name...krn es6 sama bisa tulis skli
+        name,
+        email,
+        password,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data; //kalau ok maka send back data dari bacakend ke fron-end/form
+  } catch (err) {
+    console.log(err.message);
+    return { error: err.response.data.message || err.message };
+  }
+};

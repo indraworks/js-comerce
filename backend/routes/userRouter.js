@@ -95,8 +95,52 @@ userRouter.post('/register', async (req, res) => {
   //kita save
 });
 
+//operasi update /put
+
+userRouter.put('/:id', async (req, res) => {
+  //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      res.status(404).send({
+        message: 'user not found!',
+      });
+    } else {
+      //update usernya tanda || jika tak ada maka diisi yg curent di form nilainya
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      user.password = req.body.password || user.password;
+      const userUpdated = await user.save();
+      //send respond balik ke client dgn data yg sudah diubah/update
+      res.send({
+        _id: userUpdated._id,
+        name: userUpdated.name,
+        email: userUpdated.email,
+        token: generateToken(userUpdated), //mbuat token baru
+      });
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({
+      message: 'server error',
+    });
+  }
+
+  //kita save
+});
+
 //export agar digunakan server.js
 export default userRouter;
+
+/*
+ketearangan utk PUT ,jadi di browser akan /api/users/:id nah id  atau nlai ini yg diketik
+dibroser ditangkap oleh server sebagai sbuah params
+req.params.id (id sesuai nama variable si nilai dibroser tadi)
+
+
+
+*/
 
 /*
 apaka sich router itu ,adalah sbuah paramlink  adress utk  disediakan pada client
