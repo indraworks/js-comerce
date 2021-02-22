@@ -36,36 +36,44 @@ userRouter.get(
 userRouter.post(
   '/signin',
   expressAsyncHandler(async (req, res) => {
-    const userSigned = await User.findOne({
-      email: req.body.email, //body ini mwkili input form di frontend yg
-      //fieldnya ada email,password etc
-      password: req.body.password,
-    });
-    if (!userSigned) {
-      res.status(401).send({
-        message: 'Invalid email or password',
+    try {
+      const { email, password } = req.body;
+      const userSigned = await User.findOne({
+        email: email, //body ini mwkili input form di frontend yg
+        //fieldnya ada email,password etc
+        password: password,
       });
-    } else {
-      //kalao password & name ok bisa login maka server send
-      //response _id,email,password,isAdmin dan token ke client
-      res.send({
-        _id: userSigned._id,
-        name: userSigned.name,
-        email: userSigned.email,
-        isAdmin: userSigned.isAdmin,
-        //nah token ini adalah hasil dari screet +gab(id,name,email,isadmin)
-        //kita yg tntukan
-        //ditambah algo chiepring si server nah kitabuat func dibawah dgn
-        //disini kita akan buat func generate token berdasarkan info userSigned yg dipassing
-        token: generateToken(userSigned),
-      });
+      if (!userSigned) {
+        res.status(401).send({
+          message: 'Invalid email or password',
+        });
+      } else {
+        //kalao password & name ok bisa login maka server send
+        //response _id,email,password,isAdmin dan token ke client
+        res.send({
+          _id: userSigned._id,
+          name: userSigned.name,
+          email: userSigned.email,
+          isAdmin: userSigned.isAdmin,
+          //nah token ini adalah hasil dari screet +gab(id,name,email,isadmin)
+          //kita yg tntukan
+          //ditambah algo chiepring si server nah kitabuat func dibawah dgn
+          //disini kita akan buat func generate token berdasarkan info userSigned yg dipassing
+          token: generateToken(userSigned),
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send('server error');
     }
   })
 );
 
-userRouter.post('/register', async (req, res) => {
-  //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
-  try {
+userRouter.post(
+  '/register',
+  expressAsyncHandler(async (req, res) => {
+    //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
+
     const userRegistered = new User({
       name: req.body.name,
       email: req.body.email,
@@ -85,15 +93,10 @@ userRouter.post('/register', async (req, res) => {
         token: generateToken(userRegistered),
       });
     }
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send({
-      message: 'server error',
-    });
-  }
 
-  //kita save
-});
+    //kita save
+  })
+);
 
 //operasi update /put
 

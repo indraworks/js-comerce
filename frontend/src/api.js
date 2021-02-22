@@ -81,9 +81,12 @@ export const update = async ({ name, email, password }) => {
     const response = await axios({
       url: `${apiUrl}/api/users/${_id}`,
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       //ada authorization krn kita pasang utk pake token jika update
-      authorization: `Bearer ${token}`,
+
       data: {
         //aslinya name:name...krn es6 sama bisa tulis skli
         name,
