@@ -56,6 +56,14 @@ export const ShowMessage = (message, callback) => {
     });
 };
 
+///redicrect users ////
+
+
+
+
+
+
+
 /*
  location.hash.split("/")[0]
 "#"

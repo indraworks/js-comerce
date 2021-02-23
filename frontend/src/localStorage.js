@@ -35,10 +35,15 @@ export const setUserInfo = ({
     })
   );
 };
+
+//clear User from storage
+export const clearUserInfo = () => {
+  localStorage.removeItem('userInfo');
+};
+
 //ambil userInfo distorage
 export const getUserInfo = () => {
   return localStorage.getItem('userInfo') //apakah ada data userInfo?
     ? JSON.parse(localStorage.getItem('userInfo'))
     : { name: '', email: '', password: '' };
 };
-

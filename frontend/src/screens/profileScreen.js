@@ -1,11 +1,16 @@
 import { update } from '../api';
-import { setUserInfo, getUserInfo } from '../localStorage';
+import { setUserInfo, getUserInfo, clearUserInfo } from '../localStorage';
 import { hideLoading, showLoading, ShowMessage } from '../utils';
 
 const ProfileScreen = {
   after_render: () => {
     //mbuat aksi brdasarkan submit yg diselect adalah form id="profile-form"
-
+    //logout
+    document.getElementById('signout-button').addEventListener('click', () => {
+      clearUserInfo();
+      //arahkan ke menu utama
+      document.location.hash = '/';
+    });
     document
       .getElementById('profile-form')
       .addEventListener('submit', async (e) => {
@@ -65,6 +70,9 @@ const ProfileScreen = {
             
             <li>
               <button class='fw' type='submit'><strong>Update</strong></button>
+            </li>
+            <li>
+              <button class='fw' type='button'id="signout-button"><strong>Sign-Out</strong></button>
             </li>
            
           </ul>

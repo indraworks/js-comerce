@@ -1,7 +1,7 @@
 import express from 'express';
 import User from '../models/userModel';
 import expressAsyncHandler from 'express-async-handler';
-import generateToken from '../utils';
+import { generateToken, isAuth } from '../utils';
 
 //note ubah router adi userRouter varibalenya biar lbih firendly ini
 //brasal daro user Router
@@ -100,9 +100,12 @@ userRouter.post(
 
 //operasi update /put
 
-userRouter.put('/:id', async (req, res) => {
-  //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
-  try {
+userRouter.put(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    //ita gak perlu buat findone kita create krn sudah gagal masuk di frontend
+
     const user = await User.findById(req.params.id);
 
     if (!user) {
@@ -123,25 +126,25 @@ userRouter.put('/:id', async (req, res) => {
         token: generateToken(userUpdated), //mbuat token baru
       });
     }
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send({
-      message: 'server error',
-    });
-  }
 
-  //kita save
-});
+    //kita save
+  })
+);
 
 //export agar digunakan server.js
 export default userRouter;
+/*
+utk cegah user lain pakai token harus di validasi user tsb dan token yg dikeluarkan hanya utk
+user trsbut saja utk itu kita bikis function isAuth yg berupa check token 
+tersbut ,kita buat di utils.js ini nerupakan midleware yg jaga dulu berisi (err,req,res,next)
+nextnya nanti lanjutke async di metode /func pput di userRouter
+
+*/
 
 /*
 ketearangan utk PUT ,jadi di browser akan /api/users/:id nah id  atau nlai ini yg diketik
 dibroser ditangkap oleh server sebagai sbuah params
 req.params.id (id sesuai nama variable si nilai dibroser tadi)
-
-
 
 */
 
