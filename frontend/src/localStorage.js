@@ -47,3 +47,33 @@ export const getUserInfo = () => {
     ? JSON.parse(localStorage.getItem('userInfo'))
     : { name: '', email: '', password: '' };
 };
+
+//GetShipping Info
+
+export const getShipping = () => {
+  const shipping = localStorage.getItem('shipping')
+    ? JSON.parse(localStorage.getItem('shipping'))
+    : {
+        address: '',
+        city: '',
+        postalCode: '',
+        country: '',
+      };
+  return shipping;
+};
+
+//SetShipping
+//btw default parameter pasing semua = '';
+//data yg dimasukan dari form kelocal storage
+
+export const setShipping = ({
+  address = '',
+  city = '',
+  postalCode = '',
+  country = '',
+}) => {
+  localStorage.setItem(
+    'shipping',
+    JSON.stringify(address, city, postalCode, country)
+  );
+};
