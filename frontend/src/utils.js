@@ -1,3 +1,5 @@
+import { getCartItems } from './localStorage';
+
 export const parseRequestUrl = () => {
   const url = document.location.hash.toLowerCase();
   const request = url.split('/'); //yg pertama dapat # bntuk array bersaarakan
@@ -56,13 +58,22 @@ export const ShowMessage = (message, callback) => {
     });
 };
 
-///redicrect users ////
+/*//redicrect users  kita buat readirec user ini kita gunakan 
+utk detksi apakah user kit aini sudah login jika login maka diredirect keshiping
+jadi cara checkna kitka cart sudah keisi kita  check out wizard 
+maka kita akan check apa ada item di chart jika ada maka kita redirect kehsiping 
+gak perlu login lagi
 
 
+///*/
 
-
-
-
+export const redirectUser = () => {
+  if (getCartItems !== 0) {
+    document.location.hash = '/shipping';
+  } else {
+    document.location.hash = '/';
+  }
+};
 
 /*
  location.hash.split("/")[0]

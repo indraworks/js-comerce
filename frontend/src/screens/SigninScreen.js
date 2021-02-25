@@ -1,6 +1,6 @@
 import { signin } from '../api';
 import { setUserInfo, getUserInfo } from '../localStorage';
-import { hideLoading, showLoading, ShowMessage } from '../utils';
+import { hideLoading, redirectUser, showLoading, ShowMessage } from '../utils';
 
 const SigninScreen = {
   after_render: () => {
@@ -26,7 +26,9 @@ const SigninScreen = {
           setUserInfo(data);
           //jika success redirect ke halaman utama '/'
 
-          document.location.hash = '/';
+          // document.location.hash = '/';
+          //pilihan dari redirect jika sudah login
+          redirectUser();
           console.log(data);
         }
       });
@@ -34,7 +36,9 @@ const SigninScreen = {
   render: () => {
     //jika user brasil login direct loangsung ke '/'
     if (getUserInfo().name) {
-      document.location.hash = '/';
+      // document.location.hash = '/';
+      //pilhan jika login pake redirectUser
+      redirectUser();
     }
     return `
       <div class='form-container'>

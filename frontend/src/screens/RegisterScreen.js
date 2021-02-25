@@ -1,6 +1,6 @@
 import { register } from '../api';
 import { setUserInfo, getUserInfo } from '../localStorage';
-import { hideLoading, showLoading, ShowMessage } from '../utils';
+import { hideLoading, redirectUser, showLoading, ShowMessage } from '../utils';
 
 const RegisterScreen = {
   after_render: () => {
@@ -28,7 +28,9 @@ const RegisterScreen = {
           setUserInfo(data);
           //jika success redirect ke halaman utama '/'
 
-          document.location.hash = '/';
+          // document.location.hash = '/';
+          //redirect berdasarkan sudah login/or not
+          redirectUser();
           console.log(data);
         }
       });
@@ -36,7 +38,9 @@ const RegisterScreen = {
   render: () => {
     //jika user brasil login direct loangsung ke '/'
     if (getUserInfo().name) {
-      document.location.hash = '/';
+      // document.location.hash = '/';
+      //ganti dgn redirectUser() utk pilihan
+      redirectUser();
     }
     return `
       <div class='form-container'>
