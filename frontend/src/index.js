@@ -7,15 +7,23 @@ import SigninScreen from './screens/SigninScreen.js';
 import Header from './components/Header.js';
 import RegisterScreen from './screens/RegisterScreen.js';
 import ProfileScreen from './screens/profileScreen.js';
+import ShippingScreen from './screens/ShippingScreen.js';
+import PaymentScreen from './screens/PaymentScreen.js';
+import PlaceOrderScreen from './screens/PlaceOrderScreen.js';
+import OrderScreen from './screens/OrderScreen.js';
 
 const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
+  '/order/:id': OrderScreen,
   '/cart/:id': CartScreen, //mnuju cart per id
   '/cart': CartScreen, //
   '/signin': SigninScreen,
   '/register': RegisterScreen,
   '/profile': ProfileScreen,
+  '/shipping': ShippingScreen,
+  '/payment': PaymentScreen,
+  '/placeorder': PlaceOrderScreen,
 };
 //kalau dapat data dari server  maka hrs disesuikan router dan render
 //harus async dan await mnyesuaikan

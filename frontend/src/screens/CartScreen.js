@@ -1,4 +1,4 @@
-import { parseRequestUrl, rerender } from '../utils';
+import { parseRequestUrl, redirectUser, rerender } from '../utils';
 import { getProduct } from '../api';
 import { getCartItems, setCartItems } from '../localStorage';
 
@@ -93,7 +93,7 @@ const CartScreen = {
       //document locatioh.hash adalah numjuk pada browsser stlah /# --> yatu /Sign-in
       //jdi diborser cchrm kita diarahkan redirect ke adress /#/Sign-In
       //pada console =http://localhost:8080/#/Sign-In
-      document.location.hash = '/Sign-In';
+      document.location.hash = '/signin';
     });
   },
   render: async () => {

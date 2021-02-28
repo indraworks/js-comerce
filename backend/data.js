@@ -3,7 +3,7 @@ export default {
   //dinodejs ganti dari export default mjdi module.exports
   products: [
     {
-      _id: '1',
+      _id: '111111111111111111111111',
       name: 'FUllzipT-shirts',
       category: 'Shirts',
       image: '/images/product-1.jpg',
@@ -14,7 +14,7 @@ export default {
       countInStock: 0,
     },
     {
-      _id: '2',
+      _id: '222222222222222222222222',
       name: 'Full training jacket',
       category: 'jacket',
       image: '/images/product-2.jpg',
@@ -25,7 +25,7 @@ export default {
       countInStock: 6,
     },
     {
-      _id: '3',
+      _id: '333333333333333333333333',
       name: 'Full hero Long Shirts',
       category: 'Shirts',
       image: '/images/product-3.jpg',
@@ -36,7 +36,7 @@ export default {
       countInStock: 6,
     },
     {
-      _id: '4',
+      _id: '444444444444444444444444',
       name: 'Full Zip Running Shirts',
       category: 'Pants',
       image: '/images/product-4.jpg',
@@ -47,7 +47,7 @@ export default {
       countInStock: 6,
     },
     {
-      _id: '5',
+      _id: '555555555555555555555555',
       name: 'Full Zip Running Shirts',
       category: 'Pants',
       image: '/images/product-5.jpg',
@@ -58,7 +58,7 @@ export default {
       countInStock: 6,
     },
     {
-      _id: '6',
+      _id: '666666',
       name: 'Full jelek Shirts',
       category: 'Pants',
       image: '/images/product-6.jpg',

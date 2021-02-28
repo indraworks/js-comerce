@@ -74,6 +74,27 @@ export const setShipping = ({
 }) => {
   localStorage.setItem(
     'shipping',
-    JSON.stringify(address, city, postalCode, country)
+    JSON.stringify({ address, city, postalCode, country })
   );
+};
+
+//copy to  Payment
+export const getPayment = () => {
+  const payment = localStorage.getItem('payment')
+    ? JSON.parse(localStorage.getItem('payment'))
+    : {
+        paymentMethod: 'paypal',
+      };
+  return payment;
+};
+//Payment
+//btw default parameter pasing semua = '';
+//data yg dimasukan dari form kelocal storage
+
+export const setPayment = ({ paymentMethod = 'paypal' }) => {
+  localStorage.setItem('payment', JSON.stringify({ paymentMethod }));
+};
+//clean cart
+export const cleanCart = () => {
+  localStorage.removeItem('cartItems');
 };

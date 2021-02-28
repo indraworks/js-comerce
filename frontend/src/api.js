@@ -103,3 +103,107 @@ export const update = async ({ name, email, password }) => {
     return { error: err.response.data.message || err.message };
   }
 };
+
+//create order ini sama dgn  post register
+// jadi kalau kita kirim data ke server
+// yg di perhatikan adalah pasiing data disni adalah order
+// nah jangan lupa karena ini adalah privat maka harus ada tokem
+//
+
+// export const createOrder = async (order) => {
+//   const { token } = getUserInfo();
+//   try {
+//     const response = await axios.post(
+//       `${apiUrl}/api/orders/`,
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//            Authorization: `Bearer ${token}`,
+//         },
+//       },
+//       { data: order }
+//     );
+//     if (response.statusText !== 'OK') {
+//       throw new Error(response.data.message);
+//     }
+//     return response.data;
+//   } catch (err) {
+//     return {error:err.response?err.response.data.message:err.message }
+
+//   }
+// };
+
+export const createOrder = async (order) => {
+  const { token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/orders`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: order,
+    });
+    if (response.statusText !== 'Created') {
+      throw new Error(response.data.message);
+    }
+
+    return response.data;
+    //console log response data
+  } catch (err) {
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};
+
+//getOrder
+export const getOrder = async (id) => {
+  const { token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${id}`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      //ingat utk request GEt gak perlu send data krn kita ambil data
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    console.log(response.data, 'data response');
+    return response.data;
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
+/*
+cara makai axios ada dua yaitu dgn cara tanpa embel2 method didepannya
+cara 1:
+    const x = axios({
+      method: 'POST',
+      url:`${adressUrl}+path`,
+      Headers:{
+        Content-Type:"applicatiom/jsom"
+      },
+      data:{variable_Param_yg_dipassing}
+     
+    })
+
+cara 2:s
+    const y = axios.put atau axios.post{
+          `alamat adress`,{Content-Type:application/json,
+          authorization:"Bearer ${token}"
+          },
+          {variabel_data_yg_dipassing_difunction :param_data}
+    }
+
+axios akan selalu dapat response dari waktu dia akssess
+apakah ada data atau ada error
+utk hal tsb maka disiapkan data penampung atau variabel
+
+
+
+*/

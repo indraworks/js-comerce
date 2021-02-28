@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import config from './config'; //kita import supaya bisa baca isi .env
 import userRouter from './routes/userRouter.js';
 import bodyParser from 'body-parser';
+import orderRouter from './routes/orderRouter.js';
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get('/api/products/:id', (req, res) => {
 //maka kit agunakan app.use(nama_endPointya,nama_function_handle endpoint tsb)
 
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 
 //conect mongoose
 mongoose
@@ -56,12 +58,11 @@ mongoose
     console.log(err.reason);
   });
 //chek utk eror validation yg nanganin ini dirouter adah expressAsyncHandler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const status = err.name && err.name === 'ValidationError' ? 400 : 500;
-  //maksud diatas smua dicheck errornya jika validtonError kita kasih status=400,slain itu server error
-  res.status(status).send({
-    message: err.message,
-  });
+  res.status(status);
+  res.send({ message: err.message });
 });
 
 app.listen(port, () => console.log(`we runing on server ${port}`));

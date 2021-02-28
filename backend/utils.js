@@ -42,10 +42,3 @@ export const isAuth = (req, res, next) => {
     });
   }
 };
-
-
-//redirect if cartItem hasnt empty 
-
-export const redirectUser =()=> {
-  if(get)
-}

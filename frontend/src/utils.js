@@ -68,7 +68,7 @@ gak perlu login lagi
 ///*/
 
 export const redirectUser = () => {
-  if (getCartItems !== 0) {
+  if (getCartItems().length !== 0) {
     document.location.hash = '/shipping';
   } else {
     document.location.hash = '/';

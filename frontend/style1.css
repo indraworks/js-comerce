@@ -1,0 +1,420 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%; /* 16px *62.5 = 10px = 1rem*/
+}
+body {
+  height: 100vh;
+  font: 1.6rem Helvetica, Arial;
+  margin: 0;
+}
+/*  setting grid container araeas */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+header {
+  grid-area: header;
+  background-color: #203040;
+  display: grid;
+  grid-template-columns: 7fr 2fr;
+  align-items: center;
+  padding: 0.5rem;
+}
+.header-in {
+  display: flex;
+  justify-content: space-around;
+}
+/* kasih hover warna orange */
+header a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+.brand a {
+  font-size: 3rem;
+}
+
+header a:hover {
+  color: #f08040;
+}
+.brand a {
+  font-size: 3rem;
+}
+
+footer {
+  display: flex;
+  background-color: #203040;
+  color: #ffff;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* products */
+.products {
+  display: flex;
+  flex-wrap: wrap; /* isi satu layar scara pisah   */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.products li {
+  flex: 0 1 30rem;
+  margin: 1rem; /* semua jaral ssma ttga +-16px  */
+  margin-bottom: 0;
+  height: 42rem;
+  border-top: 0.2rem #e0e0e0 solid;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+.product img {
+  max-height: 24rem;
+  max-width: 22rem;
+  margin-top: 2rem;
+}
+
+.product-name {
+  line-height: 2.2rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  color: rgb(255, 119, 0);
+}
+
+button {
+  cursor: pointer;
+}
+/* input disamakan besarnya sama button kluarin cursor */
+input,
+button {
+  font: 1.6rem helvetica;
+  padding: 1rem;
+  border: 0.1rem #808080;
+  border-radius: 0.5rem;
+  background: #d0d0d0;
+}
+/* input sma2 dpt hover */
+input:hover,
+button:hover {
+  border: 0.1rem #404040 solid;
+  background: #f0c040;
+}
+.primary {
+  background: #f0c040;
+}
+h3 {
+  text-align: center;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; /*paling atas 0*/
+  left: 0; /*dari pling kiri 0*/
+  width: 100%; /*sluruh  lebar layar*/
+  height: 100%; /*sluruh  tinggi layar*/
+  background-color: rgba(16, 16, 16, 0.5); /*transparaent*/
+}
+/* jadinnti overlay dibuat active maka dia akan flex..wanr putih 
+ dgn preintah classList.add(active) di utils.js
+*/
+.overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/*
+overlay > div  artinya ini overlay direct div
+buat bungkus overlay bagi hiasan 
+showMessage*/
+
+.overlay > div {
+  background: #fff;
+  color: #000;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 50rem;
+}
+/* artinya berlaku  smua tag 
+yg ada didalam div
+.overlay > div > * 
+*/
+
+.overlay > div > * {
+  margin: 2rem;
+}
+
+.fw {
+  width: 100%;
+}
+.success {
+  color: rgb(14, 177, 14);
+}
+.error {
+  color: rgb(226, 25, 25);
+}
+.product-brand {
+  font-size: 1.2rem;
+  color: #808080;
+}
+.product-price {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.rating span {
+  color: #f0c040;
+  font-size: 1.8rem;
+}
+.rating span:last-child {
+  color: #444444;
+  font-size: 1.4rem;
+}
+
+.content {
+  padding: 1rem;
+}
+/* product detail */
+.details {
+  display: flex;
+  justify-content: space-between; /* buat slaing jauh ssam item */
+  align-items: flex-start; /*sting colum view  */
+  flex-wrap: wrap; /* supata klo kcil jadi 1 colum  */
+}
+
+/*image kita ambil jadi 4 bagian   */
+.details-image {
+  flex: 2 1 60rem;
+}
+
+.details-image img {
+  max-width: 60rem;
+  width: 100%;
+}
+.details-info,
+.details-action {
+  flex: 1 1 30rem;
+}
+.details-info ul,
+.details-action ul {
+  padding: 0;
+  list-style-type: none;
+}
+/*  end product detail*/
+
+.details-info h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+/* li nya kita kasih jarak  */
+.details-info li,
+.details-action li {
+  margin-bottom: 1rem;
+}
+/* details action kit abuat kotak border */
+.details-action {
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  background: #f8f8f8;
+  padding: 1rem;
+}
+
+/*Cart */
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.cart-list {
+  flex: 3 1 60rem;
+}
+.cart-action {
+  flex: 1 1 20rem;
+  background: #d0d0d0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+/* margin-top: 3rem;
+} */
+
+.cart-list-container {
+  padding: 1rem;
+  list-style-type: none;
+}
+.container2 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 10rem;
+}
+.cart-list-container li {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.cart-list-container img {
+  max-width: 10rem;
+  max-height: 10rem;
+}
+/* header paling atas li child no.1 price kita set tingginya  */
+.cart-list-container li:first-child {
+  align-items: flex-end;
+}
+
+.cart-name {
+  margin-left: 100rem;
+}
+.cart-image {
+  flex: 1 1;
+}
+.cart-price {
+  flex: 1 1;
+  text-align: right;
+}
+.cart-name > div {
+  padding: 1rem;
+}
+.cart-list h3 {
+  margin: 0;
+}
+.cart-list button,
+.cart-list select {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+/* Form  */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.form-items {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #d0d0d0;
+  list-style-type: none;
+}
+.form-items li {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.form-container h1 {
+  align-items: center;
+  text-align: center;
+}
+
+/*check step out */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin: 1rem auto; /*x-y aja di margin 1rem ;auto buat ditengah  */
+}
+/*check-out steps > div ini artinya direct div dibawahnya semua utk atur anaknya
+dibawah container step-outs
+*/
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1 1; /*gak pake flex basis ini maskudnya smua 4 4nya bagi rata lebarnya   */
+  padding-top: 1rem;
+}
+/*ini ktika activve diset waktu waktu lewat login dan payment dan sterutsnya 
+dari prgram di checkout-step.js
+kalau active berubah warna
+*/
+.checkout-steps > div.active {
+  border-top: 0.3rem #f08000 solid;
+  color: #f08000;
+}
+
+/* Order */
+/*Order dibagi menadi 2  order-info 2.order-summary */
+.order {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.order h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+.order .cart-list-container {
+  padding: 0;
+}
+.order-info {
+  flex: 3 1 60rem; /*dibuat 3kali lebih besar dari summary kalau nnti pada layar kcil shring=1 ikut layar tak ada lahan kosong
+  60rem itu  classbase ukuran paling kcil
+  */
+}
+
+.order-info > div {
+  border: 0.1rem solid #c0c0c0;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+  margin: 1rem;
+}
+.order-action {
+  flex: 1 1 20rem; /*1 artinya grow ssuai lebar wajar dgn tetangganya ,1 strink boleh slalu ikut besar layar/kecil
+  minim kalau layar mngcil luasan 20rem
+  */
+}
+
+/*
+flex:0 1 
+https://css-tricks.com/almanac/properties/f/flex-grow/
+
+
+
+*/
+
+/*
+tentang flex:
+CSS Syntax
+flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+Property Values
+Value	Description
+flex-grow	A number specifying how much the item will grow relative to the rest of the flexible items
+flex-shrink	A number specifying how much the item will shrink relative to the rest of the flexible items
+flex-basis	The length of the item. Legal values: "auto", "inherit", or a number followed by "%", "px", "em" or any other length unit
+auto	Same as 1 1 auto.
+initial	Same as 0 1 auto. Read about initial
+none	Same as 0 0 auto.
+inherit	Inherits this property from its parent element. Read about inherit
+
+
+*/
