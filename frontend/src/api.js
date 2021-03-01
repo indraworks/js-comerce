@@ -179,6 +179,21 @@ export const getOrder = async (id) => {
   }
 };
 
+export const getPayPalCLientId = async () => {
+  const response = await axios({
+    url: `${apiUrl}/api/paypal/ClientId`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'Application/json',
+    },
+  });
+  if (response.statusText !== 'OK') {
+    throw new Error(response.data.message);
+  }
+
+  return response.data.clientId;
+};
+
 /*
 cara makai axios ada dua yaitu dgn cara tanpa embel2 method didepannya
 cara 1:
