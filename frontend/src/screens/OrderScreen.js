@@ -5,67 +5,86 @@ import {
   hideLoading,
   ShowMessage,
 } from '../utils';
-import { createOrder, getOrder, getPayPalCLientId } from '../api';
+import { createOrder, getOrder, getPayPalClientId, payOrder } from '../api';
 
 //fuction
 const addPaypalSdk = async (totalPrice) => {
-  const clientID = await getPayPalCLientId();
+  const clientID = await getPayPalClientId();
   showLoading();
   if (!window.paypal) {
+    //if not created makabuat order baru
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = `https://www.paypalobjects.com/api/checkout.js`;
     script.async = true;
-    script.onload = () => handlePayment(clientID);
+    script.onload = () => handlePayment(clientID, totalPrice);
     document.body.appendChild(script);
   } else {
-    handlePayment(clientID);
+    handlePayment(clientID, totalPrice);
   }
 };
 //handlePayment berisi sandbox dari paypal yg di render di frontend
-const handlePayment = (clientId, totalPrice) => {
+
+const handlePayment = (clientID, totalPrice) => {
   window.paypal.Button.render(
     {
+      //configure environment
       env: 'sandbox',
       client: {
-        sandbox: clientId,
+        sandbox: clientID,
         production: '',
       },
+      // cuztomise button optional
       locale: 'en_US',
       style: {
         size: 'responsive',
         color: 'gold',
         shape: 'pill',
       },
+      //enable Pay checkout  flow(optional)
       commit: true,
+      //setup payment berisi data  dan jumlah 
       payment(data, actions) {
         //merupakan payment record
         return actions.payment.create({
-          transactions: [
-            {
+          transactions: [ //create payment record ,
+            { //isinya transaction dalam bentuk array
               amount: {
                 total: totalPrice,
-                currency: 'USD',
+                currency: 'USD', //total pilihannya bisa  pakai mata uang apa 
+                //saja
               },
             },
           ],
         });
       },
       //define after successful transaction or failure transaction
+      //setelah success transction 
       onAuthorize(data, actions) {
         return actions.payment.execute().then(async () => {
           //success
           showLoading();
           // call pay order
           //ini function utk tunjukan sucessful & hisotrynya
+
+          await payOrder( // di passing di api 
+            //pasing 2 yaitu id dari prserrequesUrl dan {isidata orderId,payerId,paymetID}
+            parseRequestUrl().id,
+            {
+              orderID: data.orderId,
+              payerID: data.payerID,
+              paymentID: data.paymentID,
+            }
+          );
           hideLoading();
+          //rerender ssudah sucessful payment
           ShowMessage('Payment already successful', () => {
-            rerender(OrderScreen);
+            rerender(OrderScreen);//update state payment
           });
         });
       },
     },
-    '#paypal-button'
+    '#paypal-button' //show button paypalnya render di front-ned
   ).then(() => {
     hideLoading();
   });

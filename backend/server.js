@@ -17,6 +17,15 @@ const app = express();
 const port = 5500;
 app.use(cors());
 app.use(bodyParser.json());
+//kalau kit alangsung handel pakai app.get/post/put/delete tapi kalau kita taruh dilink
+//dan didlm sbuah file dlm hal ini di dir sndir dan file pnenganan end point di taruh didirectori
+//maka kit agunakan app.use(nama_endPointya,nama_function_handle endpoint tsb)
+
+app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
+app.get('/api/paypal/clientId', (req, res) => {
+  res.send({ clientId: config.PAYPAL_CLIENT_ID });
+});
 
 app.get('/api/products', (req, res) => {
   res.send(data.products);
@@ -35,16 +44,6 @@ app.get('/api/products/:id', (req, res) => {
     });
   }
 });
-
-//kalau kit alangsung handel pakai app.get/post/put/delete tapi kalau kita taruh dilink
-//dan didlm sbuah file dlm hal ini di dir sndir dan file pnenganan end point di taruh didirectori
-//maka kit agunakan app.use(nama_endPointya,nama_function_handle endpoint tsb)
-
-app.use('/api/users', userRouter);
-app.use('/api/orders', orderRouter);
-app.get('/api/paypal/clientId',(req,res)=>{
-  res.send({clientId:config.PAYPAL_CLIENT_ID})
-})
 
 //conect mongoose
 mongoose

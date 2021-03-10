@@ -4,6 +4,7 @@ import { isAuth } from '../utils';
 import user from '../models/userModel';
 import expressAsyncHandler from 'express-async-handler';
 const orderRouter = express.Router();
+
 orderRouter.post(
   '/',
   isAuth,
@@ -58,6 +59,49 @@ orderRouter.get(
     }
   })
 );
+//orderRouter utk put /edit payment
+orderRouter.put(
+  '/:id/pay',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const order = await Order.findById(req.params.id);
+      if (order) {
+        (order.isPaid = true),
+          (order.paidAt = Date.now),
+          (order.payment.paymentResult = {
+            payerID: req.body.payerID,
+            paymentID: req.body.paymentID,
+            orderID: req.body.orderID,
+          });
+      }
+      const updatedOrder = await order.save();
+      res.send({ message: 'Order Update', order: updatedOrder });
+      if (!order) {
+        res.status(404).json({
+          message: 'order not found!',
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+      return { error: err.message };
+    }
+  })
+);
+
+//order ruter untuk melihat smua list order dari user yg login saat ini
+
+orderRouter.get(
+  '/mine',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const mineOrders = Order.find({ user: req.user._id });
+    res.send(mineOrders);
+  })
+);
+
+export default orderRouter;
+
 // orderRouter.get(
 //   '/:id',
 //   isAuth,
@@ -70,4 +114,4 @@ orderRouter.get(
 //     }
 //   })
 // );
-export default orderRouter;
+//https://developer.paypal.com/demo/checkout/#/pattern/server
